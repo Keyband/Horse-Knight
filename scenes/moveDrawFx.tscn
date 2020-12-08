@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+var radius=0
+var color=Color('#FFAA5F')
+func _ready():
+	randomize()
+	var duration=rand_range(0.8,1.2)
+	$twn.interpolate_property(self,'radius',self.radius,32,duration,Tween.TRANS_QUINT,Tween.EASE_OUT)
+	$twn.interpolate_property(self,'color:a',self.color.a,0,duration*1.2,Tween.TRANS_QUINT,Tween.EASE_OUT)
+	$twn.start()
+	$twn.connect(\"tween_all_completed\",self,'queue_free')
+	set_process(true)
+func _process(delta):update()
+func _draw():
+	draw_arc(Vector2(),self.radius,0,2*PI,360,color,2.0,true)
+"
+
+[node name="moveDrawFx" type="Sprite"]
+modulate = Color( 1.3, 1.3, 1.3, 1 )
+script = SubResource( 1 )
+
+[node name="twn" type="Tween" parent="."]
