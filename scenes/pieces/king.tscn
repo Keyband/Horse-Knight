@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/Sprites/Pieces_17x17.png" type="Texture" id=1]
+[ext_resource path="res://scenes/enemyPiece.gd" type="Script" id=2]
+
+[node name="king" type="Sprite" groups=[
+"King",
+]]
+visible = false
+position = Vector2( 95, 19 )
+z_index = -10
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( 1, 1 )
+hframes = 6
+frame = 5
+script = ExtResource( 2 )
