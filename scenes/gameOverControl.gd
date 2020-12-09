@@ -14,6 +14,6 @@ func goIn():
 func resetStage():
 	var i=transitionLayer.instance()
 	i.fade='fadeOut'
-	get_parent().add_child(i)
+	get_parent().get_parent().add_child(i)
 	yield(i,"transitionDone")
 	get_tree().reload_current_scene()

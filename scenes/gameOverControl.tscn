@@ -1,0 +1,112 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://resources/Fonts/mago2.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://resources/Fonts/mago1.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/gameOverControl.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=7]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 5
+shadow_offset = Vector2( 0, 4 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_top = -10
+extra_spacing_bottom = -5
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=9]
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="gameOverControl" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -152.0
+margin_bottom = -152.0
+mouse_filter = 2
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="twn" type="Tween" parent="."]
+
+[node name="marginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 24
+custom_constants/margin_top = 24
+custom_constants/margin_left = 24
+custom_constants/margin_bottom = 24
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="marginContainer" type="MarginContainer" parent="marginContainer"]
+margin_left = 24.0
+margin_top = 24.0
+margin_right = 128.0
+margin_bottom = 128.0
+mouse_filter = 2
+
+[node name="gameOverPanel" type="PanelContainer" parent="marginContainer/marginContainer"]
+margin_top = 22.0
+margin_right = 104.0
+margin_bottom = 82.0
+mouse_filter = 2
+size_flags_vertical = 4
+custom_styles/panel = SubResource( 7 )
+
+[node name="marginContainer" type="MarginContainer" parent="marginContainer/marginContainer/gameOverPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 100.0
+margin_bottom = 56.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="vBoxContainer" type="VBoxContainer" parent="marginContainer/marginContainer/gameOverPanel/marginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 91.0
+margin_bottom = 47.0
+mouse_filter = 2
+
+[node name="label" type="Label" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
+margin_right = 86.0
+margin_bottom = 11.0
+custom_fonts/font = SubResource( 8 )
+text = "Game over"
+align = 1
+valign = 1
+
+[node name="hSeparator" type="HSeparator" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 15.0
+margin_right = 86.0
+margin_bottom = 19.0
+size_flags_vertical = 3
+
+[node name="button" type="Button" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
+margin_left = 13.0
+margin_top = 23.0
+margin_right = 73.0
+margin_bottom = 42.0
+size_flags_horizontal = 4
+custom_fonts/font = SubResource( 9 )
+text = "Try again"

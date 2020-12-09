@@ -1,5 +1,6 @@
 extends Node
 signal sPlayerDead
+signal sPlayerWon
 func _ready():
 	OS.window_size*=3
 	
@@ -8,3 +9,5 @@ func playerOnKing():
 
 func playerDead():
 	emit_signal("sPlayerDead")
+func fPlayerWon():
+	emit_signal('sPlayerWon')

@@ -39,8 +39,9 @@ const actorColors = [
 var bGameOver=false
 
 const moveDrawFx=preload("res://scenes/moveDrawFx.tscn")
-
+signal playerWon
 func _ready():
+	self.connect("playerWon",global,'fPlayerWon')
 	# Creating the grid that will hold all the information
 	# about the game state
 	for i in range(8):
@@ -91,7 +92,9 @@ func _process(delta):
 	var playerPosition = findTile(Tiles.Player)
 	# Check if player won
 	var won = true if findTile(Tiles.King)==Vector2(-1,-1) else false
-	if won:print_debug("A")
+	if won:
+		emit_signal('playerWon')
+		set_process(false)
 	# Check if a move is legal
 	var isAKnightMove = tileWithMouse-playerPosition in moves
 	var mouseAtSpikes = getTileAt(tileWithMouse)==Tiles.Spikes

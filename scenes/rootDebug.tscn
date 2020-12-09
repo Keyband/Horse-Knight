@@ -1,44 +1,14 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/chessBoard.gd" type="Script" id=2]
 [ext_resource path="res://resources/particlesSprites/smoke_01.png" type="Texture" id=3]
 [ext_resource path="res://resources/Sprites/Pieces_17x17.png" type="Texture" id=4]
-[ext_resource path="res://scenes/gameOverControl.gd" type="Script" id=5]
-[ext_resource path="res://resources/Fonts/mago2.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://resources/Fonts/mago1.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scenes/stageFinishedControl.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/gameOverControl.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/pieces/king.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/pieces/pawn.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/pieces/tower.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/pieces/bishop.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/pieces/queen.tscn" type="PackedScene" id=12]
-[ext_resource path="res://scenes/stageFinishedControl.gd" type="Script" id=13]
 [ext_resource path="res://scenes/rootDebug.gd" type="Script" id=14]
-
-[sub_resource type="StyleBoxFlat" id=7]
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_size = 5
-shadow_offset = Vector2( 0, 4 )
-
-[sub_resource type="DynamicFont" id=8]
-size = 32
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_top = -10
-extra_spacing_bottom = -5
-font_data = ExtResource( 6 )
-
-[sub_resource type="DynamicFont" id=9]
-outline_size = 1
-outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 7 )
+[ext_resource path="res://resources/tileset.tres" type="TileSet" id=15]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.609428, 1 )
@@ -74,181 +44,26 @@ scale_random = 0.02
 scale_curve = SubResource( 4 )
 color_ramp = SubResource( 2 )
 
-[sub_resource type="Environment" id=6]
-background_mode = 4
-glow_enabled = true
-
 [node name="rootDebug" type="Node"]
 script = ExtResource( 14 )
 
-[node name="gameOverControl" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -152.0
-margin_bottom = -152.0
-mouse_filter = 2
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="controLayer" type="CanvasLayer" parent="."]
+layer = 5
 
-[node name="twn" type="Tween" parent="gameOverControl"]
+[node name="gameOverControl" parent="controLayer" instance=ExtResource( 6 )]
 
-[node name="marginContainer" type="MarginContainer" parent="gameOverControl"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-custom_constants/margin_right = 24
-custom_constants/margin_top = 24
-custom_constants/margin_left = 24
-custom_constants/margin_bottom = 24
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="marginContainer" type="MarginContainer" parent="gameOverControl/marginContainer"]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 128.0
-margin_bottom = 128.0
-mouse_filter = 2
-
-[node name="gameOverPanel" type="PanelContainer" parent="gameOverControl/marginContainer/marginContainer"]
-margin_top = 22.0
-margin_right = 104.0
-margin_bottom = 82.0
-mouse_filter = 2
-size_flags_vertical = 4
-custom_styles/panel = SubResource( 7 )
-
-[node name="marginContainer" type="MarginContainer" parent="gameOverControl/marginContainer/marginContainer/gameOverPanel"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 100.0
-margin_bottom = 56.0
-mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="vBoxContainer" type="VBoxContainer" parent="gameOverControl/marginContainer/marginContainer/gameOverPanel/marginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 91.0
-margin_bottom = 47.0
-mouse_filter = 2
-
-[node name="label" type="Label" parent="gameOverControl/marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
-margin_right = 86.0
-margin_bottom = 11.0
-custom_fonts/font = SubResource( 8 )
-text = "Game over"
-align = 1
-valign = 1
-
-[node name="hSeparator" type="HSeparator" parent="gameOverControl/marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 15.0
-margin_right = 86.0
-margin_bottom = 19.0
-size_flags_vertical = 3
-
-[node name="button" type="Button" parent="gameOverControl/marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
-margin_left = 13.0
-margin_top = 23.0
-margin_right = 73.0
-margin_bottom = 42.0
-size_flags_horizontal = 4
-custom_fonts/font = SubResource( 9 )
-text = "Try again"
-
-[node name="stageFinishedControl" type="Control" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -152.0
-margin_bottom = -152.0
-mouse_filter = 2
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="twn" type="Tween" parent="stageFinishedControl"]
-
-[node name="marginContainer" type="MarginContainer" parent="stageFinishedControl"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-custom_constants/margin_right = 24
-custom_constants/margin_top = 24
-custom_constants/margin_left = 24
-custom_constants/margin_bottom = 24
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="marginContainer" type="MarginContainer" parent="stageFinishedControl/marginContainer"]
-margin_left = 24.0
-margin_top = 24.0
-margin_right = 133.0
-margin_bottom = 128.0
-mouse_filter = 2
-
-[node name="gameOverPanel" type="PanelContainer" parent="stageFinishedControl/marginContainer/marginContainer"]
-margin_top = 15.0
-margin_right = 109.0
-margin_bottom = 89.0
-mouse_filter = 2
-size_flags_vertical = 4
-custom_styles/panel = SubResource( 7 )
-
-[node name="marginContainer" type="MarginContainer" parent="stageFinishedControl/marginContainer/marginContainer/gameOverPanel"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 105.0
-margin_bottom = 70.0
-mouse_filter = 2
-custom_constants/margin_right = 5
-custom_constants/margin_top = 5
-custom_constants/margin_left = 5
-custom_constants/margin_bottom = 5
-
-[node name="vBoxContainer" type="VBoxContainer" parent="stageFinishedControl/marginContainer/marginContainer/gameOverPanel/marginContainer"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 96.0
-margin_bottom = 61.0
-mouse_filter = 2
-
-[node name="label" type="Label" parent="stageFinishedControl/marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
-margin_right = 91.0
-margin_bottom = 25.0
-custom_fonts/font = SubResource( 8 )
-text = "Stage
-finished!"
-align = 1
-valign = 1
-
-[node name="hSeparator" type="HSeparator" parent="stageFinishedControl/marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
-modulate = Color( 1, 1, 1, 0 )
-margin_top = 29.0
-margin_right = 91.0
-margin_bottom = 33.0
-size_flags_vertical = 3
-
-[node name="button" type="Button" parent="stageFinishedControl/marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
-margin_top = 37.0
-margin_right = 91.0
-margin_bottom = 56.0
-size_flags_horizontal = 4
-custom_fonts/font = SubResource( 9 )
-text = "Too easy! Next!"
+[node name="stageFinishedControl" parent="controLayer" instance=ExtResource( 5 )]
 
 [node name="root2d" type="Node2D" parent="."]
 
+[node name="tileMapBoard" type="TileMap" parent="root2d"]
+modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
+tile_set = ExtResource( 15 )
+cell_size = Vector2( 19, 19 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 0, 0, 3, 1, 0, 4, 0, 0, 5, 1, 0, 6, 0, 0, 7, 1, 0, 65536, 1, 0, 65537, 0, 0, 65538, 1, 0, 65539, 0, 0, 65540, 1, 0, 65541, 0, 0, 65542, 1, 0, 65543, 0, 0, 131072, 0, 0, 131073, 1, 0, 131074, 0, 0, 131075, 1, 0, 131076, 0, 0, 131077, 1, 0, 131078, 0, 0, 131079, 1, 0, 196608, 1, 0, 196609, 0, 0, 196610, 1, 0, 196611, 0, 0, 196612, 1, 0, 196613, 0, 0, 196614, 1, 0, 196615, 0, 0, 262144, 0, 0, 262145, 1, 0, 262146, 0, 0, 262147, 1, 0, 262148, 0, 0, 262149, 1, 0, 262150, 0, 0, 262151, 1, 0, 327680, 1, 0, 327681, 0, 0, 327682, 1, 0, 327683, 0, 0, 327684, 1, 0, 327685, 0, 0, 327686, 1, 0, 327687, 0, 0, 393216, 0, 0, 393217, 1, 0, 393218, 0, 0, 393219, 1, 0, 393220, 0, 0, 393221, 1, 0, 393222, 0, 0, 393223, 1, 0, 458752, 1, 0, 458753, 0, 0, 458754, 1, 0, 458755, 0, 0, 458756, 1, 0, 458757, 0, 0, 458758, 1, 0, 458759, 0, 0 )
+
 [node name="tileMap" type="TileMap" parent="root2d"]
-z_index = -1000
 cell_size = Vector2( 19, 19 )
 format = 1
 script = ExtResource( 2 )
@@ -262,34 +77,12 @@ script = ExtResource( 2 )
 [node name="twnDotRadius" type="Tween" parent="root2d/tileMap"]
 
 [node name="king" parent="root2d/tileMap" instance=ExtResource( 8 )]
-visible = true
-
-[node name="tower" parent="root2d/tileMap" instance=ExtResource( 10 )]
-visible = true
-
-[node name="bishop" parent="root2d/tileMap" instance=ExtResource( 11 )]
-
-[node name="pawn" parent="root2d/tileMap" instance=ExtResource( 9 )]
-
-[node name="queen" parent="root2d/tileMap" instance=ExtResource( 12 )]
-
-[node name="spikes" type="Sprite" parent="root2d/tileMap" groups=[
-"Spikes",
-]]
-visible = false
-modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 38, 76 )
-z_index = -10
-texture = ExtResource( 4 )
-centered = false
-offset = Vector2( 1, 1 )
-hframes = 6
-frame = 1
+position = Vector2( 76, 38 )
 
 [node name="player" type="Sprite" parent="root2d/tileMap" groups=[
 "Player",
 ]]
-position = Vector2( 95, 76 )
+position = Vector2( 38, 19 )
 z_index = 10
 texture = ExtResource( 4 )
 centered = false
@@ -307,6 +100,3 @@ local_coords = false
 draw_order = 1
 process_material = SubResource( 5 )
 texture = ExtResource( 3 )
-
-[node name="worldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
