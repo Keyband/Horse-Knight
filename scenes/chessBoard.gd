@@ -4,6 +4,16 @@ extends TileMap
 
 # The heart of the entire code I think
 enum Tiles {Empty, Player, King, Spikes, Tower, Bishop, Queen, Pawn}
+const aKingMoves = [
+	Vector2(0,-1),
+	Vector2(1,-1),
+	Vector2(1,0),
+	Vector2(1,1),
+	Vector2(0,1),
+	Vector2(-1,1),
+	Vector2(-1,0),
+	Vector2(-1,-1),
+]
 const fDotMaxRadius=4
 var grid=[]
 var fDotRadius=4
@@ -40,6 +50,7 @@ var bGameOver=false
 
 const moveDrawFx=preload("res://scenes/moveDrawFx.tscn")
 signal playerWon
+signal enemiesMoved
 func _ready():
 	self.connect("playerWon",global,'fPlayerWon')
 	# Creating the grid that will hold all the information
@@ -93,8 +104,9 @@ func _process(delta):
 	# Check if player won
 	var won = true if findTile(Tiles.King)==Vector2(-1,-1) else false
 	if won:
-		emit_signal('playerWon')
-		set_process(false)
+		if get_node("king").dead or true:
+			emit_signal('playerWon')
+			set_process(false)
 	# Check if a move is legal
 	var isAKnightMove = tileWithMouse-playerPosition in moves
 	var mouseAtSpikes = getTileAt(tileWithMouse)==Tiles.Spikes
@@ -102,7 +114,7 @@ func _process(delta):
 	if isAKnightMove:
 		var tileWithMouseIdx=getTileAt(tileWithMouse)
 		if mouseAtSpikes: Input.set_default_cursor_shape(Input.CURSOR_FORBIDDEN)
-		else: Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+		elif not $twnMove.is_active(): Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	else: Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	# Move player if possible
 	if Input.is_action_just_pressed('ui_lmb') and isAKnightMove and not mouseAtSpikes and not bGameOver:
@@ -112,6 +124,7 @@ func _process(delta):
 		moveObjToTile($player,tileWithMouse)
 		if playerInDanger:
 			moveEnemies(playerPosition,oldPlayerPosition)
+		
 						
 	# Check if player is on a line of sight
 	playerInDanger=false
@@ -168,6 +181,11 @@ func _process(delta):
 					playerInDanger=true
 					dangerTiles.append(Vector2(i,j))
 					dangerTiles.append(Vector2(i,j+1))
+			if tile==Tiles.King:
+				if playerPosition-Vector2(i,j) in aKingMoves:
+					playerInDanger=true
+					for kingTile in aKingMoves:
+						dangerTiles.append(kingTile+Vector2(i,j))
 			if tile==Tiles.Queen:
 				if playerPosition.x==i:
 					playerInDanger=true
@@ -283,6 +301,8 @@ func checkTileForNode(node):
 		return Tiles.Tower
 	elif node.is_in_group('Bishop'):
 		return Tiles.Bishop
+	elif node.is_in_group('King'):
+		return Tiles.King
 	elif node.is_in_group('Queen'):
 		return Tiles.Queen
 	elif node.is_in_group('Pawn'):
@@ -292,6 +312,7 @@ func checkTileForNode(node):
 func moveObjToTile(node=Node2D,to=Vector2()):
 	var playerWasInDanger=playerInDanger
 	var tile = checkTileForNode(node)
+	print_debug(tile)
 	var at = self.world_to_map(node.global_position)
 	tweenWithTaxiMetric(node,map_to_world(to))
 	yield($twnDotRadius,"tween_all_completed")
@@ -306,12 +327,15 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 	grid[at.x][at.y]=Tiles.Empty
 	grid[to.x][to.y]=tile
 	if node.is_in_group('Player'):
-		var playerIsInDanger=isPlayerInDanger()
+		yield(self,'enemiesMoved')
+		var playerIsInDanger=isPlayerInDanger(playerWasInDanger)
 		print('Player was in danger: ', playerWasInDanger)
 		print('Player is in danger now: ', playerIsInDanger)
 		if playerWasInDanger and playerIsInDanger:
 			$player.remove_from_group('Player')
 			gameOver()
+	else:
+		emit_signal('enemiesMoved')
 func killPiece(node):
 	yield(get_tree().create_timer(0.2),'timeout')
 	$twnMove.disconnect("tween_all_completed",self,'killPiece')
@@ -321,9 +345,9 @@ func killPiece(node):
 	node.global_position+=self.cell_size/2
 func gameOver():
 	bGameOver=true
-	#Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	
-func isPlayerInDanger():
+func isPlayerInDanger(was):
 	var playerPosition=findTile(Tiles.Player)
 	for i in range(8):
 		for j in range(8):
@@ -345,6 +369,12 @@ func isPlayerInDanger():
 					if not (i-k>7 or i-k<0  or j-k > 7 or j-k<0):
 						if getTileAt(Vector2(i-k,j-k))==Tiles.Player: playerInSight=true
 				if playerInSight:
+					return true
+			if tile==Tiles.Pawn:
+				if playerPosition.y==(j+1) and playerPosition.x==i:
+					return true
+			if tile==Tiles.King:
+				if playerPosition-Vector2(i,j) in aKingMoves:
 					return true
 			if tile==Tiles.Queen:
 				if playerPosition.x==i:
@@ -416,6 +446,14 @@ func moveEnemies(playerPosition=Vector2(),oldPlayerPosition=Vector2()):
 					var movingPiece
 					for node in get_children():
 						if node.is_in_group('Pawn') and self.world_to_map(node.global_position) == Vector2(i,j):
+							movingPiece=node
+					moveObjToTile(movingPiece,oldPlayerPosition)
+					return
+			elif tile==Tiles.King:
+				if playerPosition-Vector2(i,j) in aKingMoves:
+					var movingPiece
+					for node in get_children():
+						if node.is_in_group('King') and self.world_to_map(node.global_position) == Vector2(i,j):
 							movingPiece=node
 					moveObjToTile(movingPiece,oldPlayerPosition)
 					return

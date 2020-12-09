@@ -6,7 +6,6 @@
 [node name="tower" type="Sprite" groups=[
 "Tower",
 ]]
-visible = false
 position = Vector2( 38, 38 )
 z_index = 10
 texture = ExtResource( 1 )

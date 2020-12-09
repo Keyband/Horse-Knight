@@ -5,6 +5,7 @@ func _ready():
 	global.connect('sPlayerWon',self,'goIn')
 	$marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer/button.connect("pressed",self,'nextStage')
 func goIn():
+	yield(get_tree().create_timer(1.0),'timeout')
 	$twn.interpolate_property(self,'rect_global_position:y',self.rect_global_position.y,0,0.66,Tween.TRANS_QUINT,Tween.EASE_OUT)
 	$twn.start()
 func nextStage():

@@ -1,14 +1,17 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/rootDebug.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scenes/levels/2.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/levels/4.tscn" type="PackedScene" id=2]
 
 [node name="level" type="Node"]
 
 [node name="rootDebug" parent="." instance=ExtResource( 1 )]
 nextLevel = ExtResource( 2 )
 
+[node name="king" parent="rootDebug/root2d/tileMap" index="4"]
+position = Vector2( 95, 76 )
+
 [node name="player" parent="rootDebug/root2d/tileMap" index="5"]
-position = Vector2( 57, 76 )
+position = Vector2( 38, 114 )
 
 [editable path="rootDebug"]
