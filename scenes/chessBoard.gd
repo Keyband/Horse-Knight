@@ -177,10 +177,10 @@ func _process(delta):
 							for k in range(playerPosition.x-i+1):
 								dangerTiles.append(Vector2(i+k,j+k))
 			if tile==Tiles.Pawn:
-				if playerPosition.y==(j+1) and playerPosition.x==i:
+				if playerPosition.y==(j+1) and (playerPosition.x==i+1 or playerPosition.x==i-1):
 					playerInDanger=true
 					dangerTiles.append(Vector2(i,j))
-					dangerTiles.append(Vector2(i,j+1))
+					dangerTiles.append(Vector2(i+1 if playerPosition.x==i+1 else i-1,j+1))
 			if tile==Tiles.King:
 				if playerPosition-Vector2(i,j) in aKingMoves:
 					playerInDanger=true
@@ -371,7 +371,7 @@ func isPlayerInDanger(was):
 				if playerInSight:
 					return true
 			if tile==Tiles.Pawn:
-				if playerPosition.y==(j+1) and playerPosition.x==i:
+				if playerPosition.y==(j+1) and (playerPosition.x==i+1 or playerPosition.x==i-1):
 					return true
 			if tile==Tiles.King:
 				if playerPosition-Vector2(i,j) in aKingMoves:
@@ -442,7 +442,7 @@ func moveEnemies(playerPosition=Vector2(),oldPlayerPosition=Vector2()):
 					moveObjToTile(movingPiece,oldPlayerPosition)
 					return
 			elif tile==Tiles.Pawn:
-				if playerPosition.y==(j+1) and playerPosition.x==i:
+				if playerPosition.y==(j+1) and (playerPosition.x==i+1 or playerPosition.x==i-1):
 					var movingPiece
 					for node in get_children():
 						if node.is_in_group('Pawn') and self.world_to_map(node.global_position) == Vector2(i,j):
