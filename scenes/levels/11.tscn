@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/rootDebug.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/pieces/spikes.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/levels/12.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/pieces/bishop.tscn" type="PackedScene" id=4]
 
 [node name="level" type="Node"]
 
 [node name="rootDebug" parent="." instance=ExtResource( 1 )]
+nextLevel = ExtResource( 3 )
 
 [node name="king" parent="rootDebug/root2d/tileMap" index="4"]
 position = Vector2( 76, 95 )
@@ -30,7 +32,7 @@ position = Vector2( 19, 95 )
 position = Vector2( 57, 95 )
 
 [node name="bishop" parent="rootDebug/root2d/tileMap" index="11" instance=ExtResource( 4 )]
-position = Vector2( 19, 19 )
+position = Vector2( 38, 19 )
 
 [node name="bishop2" parent="rootDebug/root2d/tileMap" index="12" instance=ExtResource( 4 )]
 position = Vector2( 19, 76 )

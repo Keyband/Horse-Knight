@@ -6,3 +6,10 @@ func _ready():
 	i.fade='fadeIn'
 	add_child(i)
 	yield(i,"transitionDone")
+	if OS.is_debug_build():
+		set_process(true)
+func _process(delta):
+	if Input.is_action_just_pressed('ui_debug') and OS.is_debug_build():
+		$controLayer/stageFinishedControl.nextStage()
+		set_process(false)
+	
