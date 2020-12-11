@@ -6,11 +6,10 @@
 [node name="tower" type="Sprite" groups=[
 "Tower",
 ]]
-position = Vector2( 38, 38 )
 z_index = 10
 texture = ExtResource( 1 )
 centered = false
-offset = Vector2( 1, 1 )
+offset = Vector2( 1.5, 1.5 )
 hframes = 6
 frame = 2
 script = ExtResource( 2 )

@@ -6,11 +6,10 @@
 [node name="pawn" type="Sprite" groups=[
 "Pawn",
 ]]
-position = Vector2( 95, 57 )
 z_index = 10
 texture = ExtResource( 1 )
 centered = false
-offset = Vector2( 1, 1 )
+offset = Vector2( 1.5, 1.5 )
 hframes = 6
 frame = 3
 script = ExtResource( 2 )

@@ -6,9 +6,9 @@
 [ext_resource path="res://resources/Sprites/Pieces_17x17.png" type="Texture" id=4]
 [ext_resource path="res://scenes/stageFinishedControl.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/gameOverControl.tscn" type="PackedScene" id=6]
+[ext_resource path="res://resources/tilesetNew.tres" type="TileSet" id=7]
 [ext_resource path="res://scenes/pieces/king.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/rootDebug.gd" type="Script" id=14]
-[ext_resource path="res://resources/tileset.tres" type="TileSet" id=15]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.609428, 1 )
@@ -57,14 +57,14 @@ layer = 5
 [node name="root2d" type="Node2D" parent="."]
 
 [node name="tileMapBoard" type="TileMap" parent="root2d"]
-modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
-tile_set = ExtResource( 15 )
-cell_size = Vector2( 19, 19 )
+modulate = Color( 0.738281, 0.738281, 0.738281, 1 )
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 20, 20 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 0, 0, 3, 1, 0, 4, 0, 0, 5, 1, 0, 6, 0, 0, 7, 1, 0, 65536, 1, 0, 65537, 0, 0, 65538, 1, 0, 65539, 0, 0, 65540, 1, 0, 65541, 0, 0, 65542, 1, 0, 65543, 0, 0, 131072, 0, 0, 131073, 1, 0, 131074, 0, 0, 131075, 1, 0, 131076, 0, 0, 131077, 1, 0, 131078, 0, 0, 131079, 1, 0, 196608, 1, 0, 196609, 0, 0, 196610, 1, 0, 196611, 0, 0, 196612, 1, 0, 196613, 0, 0, 196614, 1, 0, 196615, 0, 0, 262144, 0, 0, 262145, 1, 0, 262146, 0, 0, 262147, 1, 0, 262148, 0, 0, 262149, 1, 0, 262150, 0, 0, 262151, 1, 0, 327680, 1, 0, 327681, 0, 0, 327682, 1, 0, 327683, 0, 0, 327684, 1, 0, 327685, 0, 0, 327686, 1, 0, 327687, 0, 0, 393216, 0, 0, 393217, 1, 0, 393218, 0, 0, 393219, 1, 0, 393220, 0, 0, 393221, 1, 0, 393222, 0, 0, 393223, 1, 0, 458752, 1, 0, 458753, 0, 0, 458754, 1, 0, 458755, 0, 0, 458756, 1, 0, 458757, 0, 0, 458758, 1, 0, 458759, 0, 0 )
 
 [node name="tileMap" type="TileMap" parent="root2d"]
-cell_size = Vector2( 19, 19 )
+cell_size = Vector2( 20, 20 )
 format = 1
 script = ExtResource( 2 )
 
@@ -77,16 +77,16 @@ script = ExtResource( 2 )
 [node name="twnDotRadius" type="Tween" parent="root2d/tileMap"]
 
 [node name="king" parent="root2d/tileMap" instance=ExtResource( 8 )]
-position = Vector2( 76, 38 )
+position = Vector2( 80, 40 )
 
 [node name="player" type="Sprite" parent="root2d/tileMap" groups=[
 "Player",
 ]]
-position = Vector2( 38, 19 )
+position = Vector2( 40, 20 )
 z_index = 10
 texture = ExtResource( 4 )
 centered = false
-offset = Vector2( 1, 1 )
+offset = Vector2( 1.5, 1.5 )
 hframes = 6
 script = ExtResource( 1 )
 
