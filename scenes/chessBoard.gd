@@ -48,6 +48,7 @@ const actorColors = [
 ]
 var bGameOver=false
 
+export(Texture) var tilesTarget = load("res://resources/Sprites/TilesTargets_20x20.png")
 const moveDrawFx=preload("res://scenes/moveDrawFx.tscn")
 signal playerWon
 signal enemiesMoved
@@ -251,10 +252,11 @@ func _draw():
 	# Draw possible moves
 	if not bGameOver:
 		for move in moves:
-			var circleCenterPosition = 0.5*self.cell_size+self.map_to_world(playerPosition+move)
-			var localRadius = fDotRadius if self.world_to_map(get_global_mouse_position()) != (playerPosition+move) else 1.1*fDotRadius
-			draw_circle(circleCenterPosition,1.2*localRadius,Color('D0805B'))
-			draw_circle(circleCenterPosition,localRadius,Color('FFAA5F'))
+			draw_texture_rect_region(load("res://resources/Sprites/TilesTargets_20x20.png"),Rect2(self.map_to_world(playerPosition+move).x,self.map_to_world(playerPosition+move).y,20,20),Rect2(Vector2(40,0),Vector2(20,20)))
+#			var circleCenterPosition = 0.5*self.cell_size+self.map_to_world(playerPosition+move)
+#			var localRadius = fDotRadius if self.world_to_map(get_global_mouse_position()) != (playerPosition+move) else 1.1*fDotRadius
+#			draw_circle(circleCenterPosition,1.2*localRadius,Color('D0805B'))
+#			draw_circle(circleCenterPosition,localRadius,Color('FFAA5F'))
 
 # A bunch of helper functions:
 func findTile(tile):

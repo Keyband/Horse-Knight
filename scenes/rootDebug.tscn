@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/chessBoard.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/gameOverControl.tscn" type="PackedScene" id=6]
 [ext_resource path="res://resources/tilesetNew.tres" type="TileSet" id=7]
 [ext_resource path="res://scenes/pieces/king.tscn" type="PackedScene" id=8]
+[ext_resource path="res://resources/Sprites/TilesTargets_20x20.png" type="Texture" id=9]
 [ext_resource path="res://scenes/rootDebug.gd" type="Script" id=14]
 
 [sub_resource type="Gradient" id=1]
@@ -67,6 +68,7 @@ tile_data = PoolIntArray( 0, 0, 0, 1, 1, 0, 2, 0, 0, 3, 1, 0, 4, 0, 0, 5, 1, 0, 
 cell_size = Vector2( 20, 20 )
 format = 1
 script = ExtResource( 2 )
+tilesTarget = ExtResource( 9 )
 
 [node name="twn" type="Tween" parent="root2d/tileMap"]
 
