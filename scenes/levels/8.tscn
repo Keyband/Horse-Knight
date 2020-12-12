@@ -12,24 +12,113 @@
 nextLevel = ExtResource( 5 )
 
 [node name="king" parent="rootDebug/root2d/tileMap" index="4"]
-position = Vector2( 114, 76 )
+position = Vector2( 120, 80 )
 
 [node name="player" parent="rootDebug/root2d/tileMap" index="5"]
-position = Vector2( 19, 95 )
+position = Vector2( 20, 100 )
 
 [node name="spikes" parent="rootDebug/root2d/tileMap" index="6" instance=ExtResource( 2 )]
-position = Vector2( 19, 19 )
+position = Vector2( 20, 20 )
 
 [node name="spikes2" parent="rootDebug/root2d/tileMap" index="7" instance=ExtResource( 2 )]
-position = Vector2( 57, 114 )
+position = Vector2( 60, 120 )
+frame = 2
 
-[node name="pawn" parent="rootDebug/root2d/tileMap" index="8" instance=ExtResource( 3 )]
-position = Vector2( 19, 76 )
+[node name="spikes9" parent="rootDebug/root2d/tileMap" index="8" instance=ExtResource( 2 )]
+position = Vector2( 80, 100 )
 
-[node name="bishop" parent="rootDebug/root2d/tileMap" index="9" instance=ExtResource( 4 )]
-position = Vector2( 114, 19 )
+[node name="spikes26" parent="rootDebug/root2d/tileMap" index="9" instance=ExtResource( 2 )]
+position = Vector2( 80, 80 )
+frame = 2
 
-[node name="bishop2" parent="rootDebug/root2d/tileMap" index="10" instance=ExtResource( 4 )]
-position = Vector2( 57, 38 )
+[node name="spikes27" parent="rootDebug/root2d/tileMap" index="10" instance=ExtResource( 2 )]
+position = Vector2( 140, 140 )
+
+[node name="spikes28" parent="rootDebug/root2d/tileMap" index="11" instance=ExtResource( 2 )]
+position = Vector2( 140, 120 )
+
+[node name="spikes29" parent="rootDebug/root2d/tileMap" index="12" instance=ExtResource( 2 )]
+position = Vector2( 120, 140 )
+frame = 2
+
+[node name="spikes3" parent="rootDebug/root2d/tileMap" index="13" instance=ExtResource( 2 )]
+position = Vector2( 20, 140 )
+frame = 2
+
+[node name="spikes4" parent="rootDebug/root2d/tileMap" index="14" instance=ExtResource( 2 )]
+position = Vector2( 0, 120 )
+frame = 2
+
+[node name="spikes5" parent="rootDebug/root2d/tileMap" index="15" instance=ExtResource( 2 )]
+position = Vector2( 0, 140 )
+
+[node name="spikes6" parent="rootDebug/root2d/tileMap" index="16" instance=ExtResource( 2 )]
+position = Vector2( 100, 0 )
+
+[node name="spikes7" parent="rootDebug/root2d/tileMap" index="17" instance=ExtResource( 2 )]
+position = Vector2( 100, 20 )
+
+[node name="spikes8" parent="rootDebug/root2d/tileMap" index="18" instance=ExtResource( 2 )]
+position = Vector2( 100, 40 )
+
+[node name="spikes10" parent="rootDebug/root2d/tileMap" index="19" instance=ExtResource( 2 )]
+position = Vector2( 140, 40 )
+
+[node name="spikes11" parent="rootDebug/root2d/tileMap" index="20" instance=ExtResource( 2 )]
+position = Vector2( 140, 20 )
+
+[node name="spikes12" parent="rootDebug/root2d/tileMap" index="21" instance=ExtResource( 2 )]
+position = Vector2( 140, 0 )
+
+[node name="spikes13" parent="rootDebug/root2d/tileMap" index="22" instance=ExtResource( 2 )]
+position = Vector2( 120, 0 )
+
+[node name="spikes14" parent="rootDebug/root2d/tileMap" index="23" instance=ExtResource( 2 )]
+position = Vector2( 140, 60 )
+
+[node name="spikes15" parent="rootDebug/root2d/tileMap" index="24" instance=ExtResource( 2 )]
+position = Vector2( 140, 80 )
+
+[node name="spikes30" parent="rootDebug/root2d/tileMap" index="25" instance=ExtResource( 2 )]
+position = Vector2( 140, 100 )
+
+[node name="spikes16" parent="rootDebug/root2d/tileMap" index="26" instance=ExtResource( 2 )]
+position = Vector2( 120, 60 )
+frame = 2
+
+[node name="spikes17" parent="rootDebug/root2d/tileMap" index="27" instance=ExtResource( 2 )]
+position = Vector2( 80, 20 )
+
+[node name="spikes18" parent="rootDebug/root2d/tileMap" index="28" instance=ExtResource( 2 )]
+position = Vector2( 60, 0 )
+
+[node name="spikes19" parent="rootDebug/root2d/tileMap" index="29" instance=ExtResource( 2 )]
+position = Vector2( 80, 0 )
+
+[node name="spikes20" parent="rootDebug/root2d/tileMap" index="30" instance=ExtResource( 2 )]
+position = Vector2( 40, 0 )
+
+[node name="spikes21" parent="rootDebug/root2d/tileMap" index="31" instance=ExtResource( 2 )]
+position = Vector2( 20, 0 )
+
+[node name="spikes22" parent="rootDebug/root2d/tileMap" index="32" instance=ExtResource( 2 )]
+
+[node name="spikes23" parent="rootDebug/root2d/tileMap" index="33" instance=ExtResource( 2 )]
+position = Vector2( 0, 20 )
+
+[node name="spikes24" parent="rootDebug/root2d/tileMap" index="34" instance=ExtResource( 2 )]
+position = Vector2( 0, 40 )
+
+[node name="spikes25" parent="rootDebug/root2d/tileMap" index="35" instance=ExtResource( 2 )]
+position = Vector2( 40, 20 )
+
+[node name="pawn" parent="rootDebug/root2d/tileMap" index="36" instance=ExtResource( 3 )]
+position = Vector2( 0, 80 )
+
+[node name="bishop" parent="rootDebug/root2d/tileMap" index="37" instance=ExtResource( 4 )]
+position = Vector2( 120, 20 )
+
+[node name="bishop2" parent="rootDebug/root2d/tileMap" index="38" instance=ExtResource( 4 )]
+position = Vector2( 60, 40 )
 
 [editable path="rootDebug"]
