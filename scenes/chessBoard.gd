@@ -118,7 +118,7 @@ func _process(delta):
 		elif not $twnMove.is_active(): Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	else: Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	# Move player if possible
-	if Input.is_action_just_pressed('ui_lmb') and isAKnightMove and not mouseAtSpikes and not bGameOver:
+	if Input.is_action_just_pressed('ui_lmb') and isAKnightMove and not mouseAtSpikes and not bGameOver and not $twnMove.is_active():
 		var oldPlayerPosition=playerPosition
 		twnDotOut()
 		createMoveDrawFx(self.map_to_world(tileWithMouse)+self.cell_size/2)
