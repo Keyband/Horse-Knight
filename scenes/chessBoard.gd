@@ -244,8 +244,8 @@ func _draw():
 	for i in range(0,8):
 		for j in range(0,8):
 			var cs=self.cell_size
-			draw_line(cs*Vector2(i,j),cs*Vector2(i,j+1),Color.black,1)
-			draw_line(cs*Vector2(i,j),cs*Vector2(i+1,j),Color.black,1)
+			draw_line(cs*Vector2(i,j),cs*Vector2(i,j+1),Color('#544e68'),1)
+			draw_line(cs*Vector2(i,j),cs*Vector2(i+1,j),Color('#544e68'),1)
 			if getTileAt(Vector2(i,j))!=Tiles.Empty:
 				drawTileAt(Vector2(i,j))
 	# Draw possible moves
