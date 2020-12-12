@@ -245,14 +245,17 @@ func _draw():
 	for i in range(0,8):
 		for j in range(0,8):
 			var cs=self.cell_size
-			draw_line(cs*Vector2(i,j),cs*Vector2(i,j+1),Color('#544e68'),1)
-			draw_line(cs*Vector2(i,j),cs*Vector2(i+1,j),Color('#544e68'),1)
+			draw_line(cs*Vector2(i,j),cs*Vector2(i,j+1),Color('#544e68'),1.05)
+			draw_line(cs*Vector2(i,j),cs*Vector2(i+1,j),Color('#544e68'),1.05)
 			if getTileAt(Vector2(i,j))!=Tiles.Empty:
 				drawTileAt(Vector2(i,j))
 	# Draw possible moves
 	if not bGameOver:
 		for move in moves:
-			draw_texture_rect_region(load("res://resources/Sprites/TilesTargets_20x20.png"),Rect2(self.map_to_world(playerPosition+move).x,self.map_to_world(playerPosition+move).y,20,20),Rect2(Vector2(40,0),Vector2(20,20)))
+			var spriteRect2 = Rect2(Vector2(40,0) if self.world_to_map(get_global_mouse_position()) != (playerPosition+move) else Vector2(20,0),Vector2(20,20))
+			draw_texture_rect_region(tilesTarget,
+				Rect2(self.map_to_world(playerPosition+move),20*Vector2.ONE),
+				spriteRect2)
 #			var circleCenterPosition = 0.5*self.cell_size+self.map_to_world(playerPosition+move)
 #			var localRadius = fDotRadius if self.world_to_map(get_global_mouse_position()) != (playerPosition+move) else 1.1*fDotRadius
 #			draw_circle(circleCenterPosition,1.2*localRadius,Color('D0805B'))

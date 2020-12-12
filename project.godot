@@ -18,6 +18,8 @@ _global_script_class_icons={
 config/name="10 Mg Chess Knight"
 run/main_scene="res://scenes/rootDebug.tscn"
 config/icon="res://icon.png"
+config/macos_native_icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
