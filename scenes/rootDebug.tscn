@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/chessBoard.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://resources/tilesetNew.tres" type="TileSet" id=7]
 [ext_resource path="res://scenes/pieces/king.tscn" type="PackedScene" id=8]
 [ext_resource path="res://resources/Sprites/TilesTargets_20x20.png" type="Texture" id=9]
+[ext_resource path="res://scenes/pieces/bishop.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/rootDebug.gd" type="Script" id=14]
 
 [sub_resource type="Gradient" id=1]
@@ -104,3 +105,6 @@ local_coords = false
 draw_order = 1
 process_material = SubResource( 5 )
 texture = ExtResource( 3 )
+
+[node name="bishop" parent="root2d/tileMap" instance=ExtResource( 10 )]
+position = Vector2( 140, 120 )

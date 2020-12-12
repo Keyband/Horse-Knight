@@ -269,10 +269,10 @@ func findTile(tile):
 				return Vector2(i,j)
 	return Vector2(-1,-1)
 func tweenWithTaxiMetric(obj=Sprite,endPos=Vector2()):
-	if not obj.is_in_group('Bishop:'):
-		randomize()
-		var movementDuration=rand_range(0.6,0.8)
-		var rotationDuration=movementDuration*rand_range(1.1,1.3)
+	randomize()
+	var movementDuration=rand_range(0.55,0.78)
+	var rotationDuration=movementDuration*rand_range(1.1,1.3)
+	if not obj.is_in_group('Bishop'):
 		altProcessing=false
 		#$twnMove.interpolate_property(obj, 'rotation', obj.rotation, -sign(obj.global_position.x-endPos.x)*PI/8,rotationDuration,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
 		$twnMove.interpolate_property(obj,'global_position:x',obj.global_position.x,endPos.x,movementDuration,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
@@ -289,10 +289,12 @@ func tweenWithTaxiMetric(obj=Sprite,endPos=Vector2()):
 		twnDotIn()
 	else:
 		altProcessing=false
-		$twnMove.interpolate_property(obj, 'rotation', obj.rotation, -sign(obj.global_position.x-endPos.x)*PI/8,0.3,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
-		$twnMove.interpolate_property(obj,'global_position',obj.global_position,endPos,0.3,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
+		$twnMove.interpolate_property(obj, 'rotation', obj.rotation, -sign(obj.global_position.x-endPos.x)*PI/8,rotationDuration,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
+		$twnMove.interpolate_property(obj,'global_position',obj.global_position,endPos,movementDuration,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
 		$twnMove.start()
 		yield($twnMove,"tween_all_completed")
+		$twn.interpolate_property(obj, 'rotation', obj.rotation, 0,rotationDuration,Tween.TRANS_BACK,Tween.EASE_OUT)
+		$twn.start()
 		altProcessing=true
 		twnDotIn()
 func checkTileForNode(node):
