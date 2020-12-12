@@ -1,22 +1,31 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://resources/Fonts/mago2.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://resources/Fonts/mago1.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://scenes/stageFinishedControl.gd" type="Script" id=3]
+[ext_resource path="res://resources/buttons/focusHover.tres" type="StyleBox" id=4]
+[ext_resource path="res://resources/buttons/pressed.tres" type="StyleBox" id=5]
+[ext_resource path="res://resources/buttons/normal.tres" type="StyleBox" id=6]
+[ext_resource path="res://resources/buttons/disabled.tres" type="StyleBox" id=7]
 
-[sub_resource type="StyleBoxFlat" id=1]
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_size = 5
-shadow_offset = Vector2( 0, 4 )
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 2.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.12549, 0.235294, 0.337255, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.815686, 0.505882, 0.34902, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
@@ -24,7 +33,7 @@ extra_spacing_top = -10
 extra_spacing_bottom = -5
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
@@ -57,23 +66,23 @@ __meta__ = {
 [node name="marginContainer" type="MarginContainer" parent="marginContainer"]
 margin_left = 24.0
 margin_top = 24.0
-margin_right = 133.0
-margin_bottom = 128.0
+margin_right = 136.0
+margin_bottom = 136.0
 mouse_filter = 2
 
 [node name="gameOverPanel" type="PanelContainer" parent="marginContainer/marginContainer"]
-margin_top = 9.0
-margin_right = 109.0
-margin_bottom = 95.0
+margin_top = 13.0
+margin_right = 112.0
+margin_bottom = 99.0
 mouse_filter = 2
 size_flags_vertical = 4
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="marginContainer" type="MarginContainer" parent="marginContainer/marginContainer/gameOverPanel"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 105.0
-margin_bottom = 82.0
+margin_left = 5.0
+margin_top = 2.0
+margin_right = 107.0
+margin_bottom = 81.0
 mouse_filter = 2
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
@@ -83,14 +92,15 @@ custom_constants/margin_bottom = 5
 [node name="vBoxContainer" type="VBoxContainer" parent="marginContainer/marginContainer/gameOverPanel/marginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 96.0
-margin_bottom = 73.0
+margin_right = 97.0
+margin_bottom = 74.0
 mouse_filter = 2
 
 [node name="label" type="Label" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
-margin_right = 91.0
+margin_right = 92.0
 margin_bottom = 25.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 text = "Stage
 finished!"
 align = 1
@@ -99,26 +109,33 @@ valign = 1
 [node name="hSeparator" type="HSeparator" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 29.0
-margin_right = 91.0
+margin_right = 92.0
 margin_bottom = 33.0
 size_flags_vertical = 3
 
 [node name="hBoxContainer" type="HBoxContainer" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
 margin_top = 37.0
-margin_right = 91.0
+margin_right = 92.0
 margin_bottom = 37.0
 
 [node name="hSeparator2" type="HSeparator" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 41.0
-margin_right = 91.0
+margin_right = 92.0
 margin_bottom = 45.0
 size_flags_vertical = 3
 
 [node name="button" type="Button" parent="marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer"]
+margin_left = 1.0
 margin_top = 49.0
-margin_right = 91.0
-margin_bottom = 68.0
+margin_right = 90.0
+margin_bottom = 69.0
+mouse_default_cursor_shape = 2
 size_flags_horizontal = 4
-custom_fonts/font = SubResource( 3 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 7 )
+custom_styles/normal = ExtResource( 6 )
+custom_fonts/font = SubResource( 2 )
 text = "Too easy! Next!"

@@ -54,6 +54,8 @@ layer = 5
 [node name="gameOverControl" parent="controLayer" instance=ExtResource( 6 )]
 
 [node name="stageFinishedControl" parent="controLayer" instance=ExtResource( 5 )]
+margin_top = -140.0
+margin_bottom = -140.0
 
 [node name="root2d" type="Node2D" parent="."]
 
