@@ -113,13 +113,13 @@ position = Vector2( 0, 40 )
 position = Vector2( 40, 20 )
 
 [node name="pawn" parent="rootDebug/root2d/tileMap" index="36" instance=ExtResource( 3 )]
-position = Vector2( 0, 80 )
+position = Vector2( 20, 80 )
 
 [node name="bishop" parent="rootDebug/root2d/tileMap" index="37" instance=ExtResource( 4 )]
 position = Vector2( 120, 20 )
 
 [node name="bishop2" parent="rootDebug/root2d/tileMap" index="38" instance=ExtResource( 4 )]
-position = Vector2( 60, 40 )
+position = Vector2( 80, 40 )
 
 [node name="player" parent="rootDebug/root2d/tileMap" index="39"]
 position = Vector2( 20, 100 )
