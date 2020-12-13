@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/sounds/sfx/footstep_wood_000.ogg" type="AudioStream" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AudioStreamPlayer
+
+func _ready():
+	randomize()
+	self.pitch_scale=rand_range(0.9,1.1)"
+
+[node name="woodSfx" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -2.0
+autoplay = true
+bus = "sfx"
+script = SubResource( 1 )

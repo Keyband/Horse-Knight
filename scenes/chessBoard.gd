@@ -56,6 +56,20 @@ export(Texture) var tilesTarget = load("res://resources/Sprites/TilesTargets_20x
 const moveDrawFx=preload("res://scenes/moveDrawFx.tscn")
 signal playerWon
 signal enemiesMoved
+
+const hoverSfx=preload("res://scenes/hoverSfx.tscn")
+const clickSfx=preload("res://scenes/clickSfx.tscn")
+const woodSfx=preload("res://scenes/woodSfx.tscn")
+
+
+func addHoverSfx():
+	get_parent().add_child(hoverSfx.instance())
+func addClickSfx():
+	get_parent().add_child(clickSfx.instance())
+func addWoodSfx():
+	get_parent().add_child(woodSfx.instance())
+
+
 func _ready():
 	self.connect("playerWon",global,'fPlayerWon')
 	# Creating the grid that will hold all the information
@@ -128,6 +142,7 @@ func _process(delta):
 		twnDotOut()
 		createMoveDrawFx(self.map_to_world(tileWithMouse)+self.cell_size/2)
 		moveObjToTile($player,tileWithMouse)
+		addClickSfx()
 		if playerInDanger:
 			moveEnemies(playerPosition,oldPlayerPosition)
 		
@@ -355,6 +370,7 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 func killPiece(node):
 	yield(get_tree().create_timer(0.2),'timeout')
 	$twnMove.disconnect("tween_all_completed",self,'killPiece')
+	addWoodSfx()
 	node.dead=true
 	node.offset=Vector2()
 	node.centered=true
