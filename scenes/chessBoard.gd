@@ -52,6 +52,8 @@ const actorColors = [
 ]
 var bGameOver=false
 
+var lastMouseGlobalPosition=Vector2()
+
 export(Texture) var tilesTarget = load("res://resources/Sprites/TilesTargets_20x20.png")
 const moveDrawFx=preload("res://scenes/moveDrawFx.tscn")
 signal playerWon
@@ -272,11 +274,15 @@ func _draw():
 	# Draw possible moves
 	if not bGameOver:
 		for move in moves:
+			if self.world_to_map(get_global_mouse_position()) == (playerPosition+move):
+				if self.world_to_map(lastMouseGlobalPosition) != (playerPosition+move) and\
+				getTileAt(self.world_to_map(lastMouseGlobalPosition))!=Tiles.Spikes:
+					addHoverSfx()
 			var spriteRect2 = Rect2(Vector2(40,0) if self.world_to_map(get_global_mouse_position()) != (playerPosition+move) else Vector2(20,0),Vector2(20,20))
 			draw_texture_rect_region(tilesTarget,
 				Rect2(self.map_to_world(playerPosition+move),20*Vector2.ONE),
 				spriteRect2)
-
+	lastMouseGlobalPosition=get_global_mouse_position()
 # A bunch of helper functions:
 func findTile(tile):
 	for i in range(8):
