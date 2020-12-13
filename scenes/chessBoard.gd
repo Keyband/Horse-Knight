@@ -453,13 +453,14 @@ func moveEnemies(playerPosition=Vector2(),oldPlayerPosition=Vector2()):
 					moveObjToTile(movingPiece,oldPlayerPosition)
 					return
 			elif tile==Tiles.King:
-				if playerPosition-Vector2(i,j) in aKingMoves:
-					var movingPiece
-					for node in get_children():
-						if node.is_in_group('King') and self.world_to_map(node.global_position) == Vector2(i,j):
-							movingPiece=node
-					moveObjToTile(movingPiece,oldPlayerPosition)
-					return
+				if playerInDanger:
+					if playerPosition-Vector2(i,j) in aKingMoves:
+						var movingPiece
+						for node in get_children():
+							if node.is_in_group('King') and self.world_to_map(node.global_position) == Vector2(i,j):
+								movingPiece=node
+						moveObjToTile(movingPiece,oldPlayerPosition)
+						return
 			elif tile==Tiles.Queen:
 				if playerPosition.x==i or playerPosition.y==j:
 					var movingPiece

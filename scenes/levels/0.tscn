@@ -19,12 +19,12 @@
 [ext_resource path="res://resources/buttons/disabled.tres" type="StyleBox" id=18]
 [ext_resource path="res://resources/Sprites/banner.png" type="Texture" id=19]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 5 )
 
 [node name="rootDebug" type="Node"]
@@ -72,7 +72,7 @@ custom_styles/pressed = ExtResource( 17 )
 custom_styles/focus = ExtResource( 15 )
 custom_styles/disabled = ExtResource( 18 )
 custom_styles/normal = ExtResource( 16 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
 text = "Start game"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -86,7 +86,7 @@ margin_top = 80.0
 margin_right = 80.0
 margin_bottom = 80.0
 rect_scale = Vector2( 0.5, 0.5 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
 text = "by Escada Games"
 align = 2
