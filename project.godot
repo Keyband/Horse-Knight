@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="10 Mg Chess Knight"
+config/name="Horse Knight"
 run/main_scene="res://scenes/rootDebug.tscn"
 config/icon="res://icon.png"
 config/macos_native_icon="res://icon.png"

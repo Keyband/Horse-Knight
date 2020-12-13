@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/smoke_01.png-31f971d69897676dd6423f7b7fb824ba.stex"
+path="res://.import/banner.png-239aa0874fc23f45e86509253c6ab51c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/particlesSprites/smoke_01.png"
-dest_files=[ "res://.import/smoke_01.png-31f971d69897676dd6423f7b7fb824ba.stex" ]
+source_file="res://resources/Sprites/banner.png"
+dest_files=[ "res://.import/banner.png-239aa0874fc23f45e86509253c6ab51c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
