@@ -24,11 +24,21 @@ script/source = "extends Label
 # var a = 2
 # var b = \"text\"
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():set_process(true)
+var currentValue=0
+const fx = preload(\"res://scenes/moveDrawFx.tscn\")
+func _ready():
+	currentValue = get_parent().get_parent().maximumNumberOfMoves-get_parent().get_parent().numberOfMoves
+	set_process(true)
 func _process(delta):
-	var movesLeft = get_parent().get_parent().maximumNumberOfMoves-get_parent().get_parent().numberOfMoves
+	if currentValue != get_parent().get_parent().maximumNumberOfMoves-get_parent().get_parent().numberOfMoves:
+		var i=fx.instance()
+		i.global_position=$position2D.global_position
+		i.scale=Vector2.ONE*0.33
+		get_parent().add_child(i)
+		currentValue=get_parent().get_parent().maximumNumberOfMoves-get_parent().get_parent().numberOfMoves
+		pass
+	
+	var movesLeft = currentValue
 	movesLeft = int(clamp(movesLeft,0,10000))
 	self.text = 'Moves left: ' + str(movesLeft)
 "
@@ -79,6 +89,10 @@ script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="position2D" type="Position2D" parent="root2d/tileMap/movesLeftLayer/label"]
+position = Vector2( 50, 7.57576 )
+scale = Vector2( 1.51515, 1.51515 )
 
 [node name="twn" type="Tween" parent="root2d/tileMap"]
 

@@ -322,7 +322,8 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 	var playerWasInDanger=playerInDanger
 	var tile = checkTileForNode(node)
 	var at = self.world_to_map(node.global_position)
-	
+	if node.is_in_group('Player'):
+		numberOfMoves+=1
 
 	tweenWithTaxiMetric(node,map_to_world(to))
 	yield($twnDotRadius,"tween_all_completed")
@@ -337,7 +338,7 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 	grid[at.x][at.y]=Tiles.Empty
 	grid[to.x][to.y]=tile
 	if node.is_in_group('Player'):
-		numberOfMoves+=1
+		#numberOfMoves+=1
 		if numberOfMoves>=maximumNumberOfMoves:
 			$player.dead=true
 		
