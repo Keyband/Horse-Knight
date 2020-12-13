@@ -56,6 +56,10 @@ ui_debug={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [node]
 
 name_casing=1

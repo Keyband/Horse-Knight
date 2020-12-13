@@ -22,6 +22,7 @@ var grid=[]
 var fDotRadius=4
 var fSelectedDotRadius=4
 var altProcessing=true
+var playerWasInDangerLastTurn=false
 var playerInDanger=false
 var playerInDangerTwice=false
 var dangerTiles=[]
@@ -316,11 +317,13 @@ func checkTileForNode(node):
 		return Tiles.Pawn
 	else:
 		return Tiles.Empty
+
 func moveObjToTile(node=Node2D,to=Vector2()):
 	var playerWasInDanger=playerInDanger
 	var tile = checkTileForNode(node)
-	print_debug(tile)
 	var at = self.world_to_map(node.global_position)
+	
+
 	tweenWithTaxiMetric(node,map_to_world(to))
 	yield($twnDotRadius,"tween_all_completed")
 	var tileAtDestination = getTileAt(to)
@@ -347,6 +350,7 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 			gameOver()
 	else:
 		emit_signal('enemiesMoved')
+		
 func killPiece(node):
 	yield(get_tree().create_timer(0.2),'timeout')
 	$twnMove.disconnect("tween_all_completed",self,'killPiece')

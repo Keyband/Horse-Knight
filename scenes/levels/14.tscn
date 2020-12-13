@@ -13,7 +13,7 @@
 nextLevel = ExtResource( 3 )
 
 [node name="tileMap" parent="rootDebug/root2d" index="1"]
-maximumNumberOfMoves = 10
+maximumNumberOfMoves = 8
 
 [node name="king" parent="rootDebug/root2d/tileMap" index="5"]
 position = Vector2( 40, 80 )
