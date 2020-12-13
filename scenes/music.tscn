@@ -15,6 +15,10 @@ script/source = "extends AudioStreamPlayer
 func _ready():
 	$twn.interpolate_property(self,'volume_db',-80,-10,1,Tween.TRANS_QUINT,Tween.EASE_OUT)
 	$twn.start()
+	set_process(true)
+func _process(delta):
+	if Input.is_action_just_pressed('ui_mute'):
+		AudioServer.set_bus_mute(AudioServer.get_bus_index('music'),!AudioServer.is_bus_mute(AudioServer.get_bus_index('music')))
 "
 
 [node name="music" type="AudioStreamPlayer"]
