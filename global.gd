@@ -2,7 +2,7 @@ extends Node
 signal sPlayerDead
 signal sPlayerWon
 func _ready():
-	OS.window_size*=3
+	OS.window_size*=4
 	
 func playerOnKing():
 	print_debug("Eba!")
