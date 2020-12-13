@@ -110,8 +110,11 @@ func _ready():
 var t=0
 func _process(delta):
 	if bGameOver and not $twnMove.is_active():
-		var playerPosition=findTile(Tiles.Player)
-		moveEnemies(playerPosition,playerPosition)
+		if numberOfMoves>=maximumNumberOfMoves:
+			$player.dead=true
+		else:
+			var playerPosition=findTile(Tiles.Player)
+			moveEnemies(playerPosition,playerPosition)
 	if findTile(Tiles.Player)==Vector2(-1,-1):
 		$twnMove.connect("tween_all_completed",self,'makePlayerDead')
 	# Oscillate danger color
@@ -358,16 +361,18 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 
 	grid[at.x][at.y]=Tiles.Empty
 	grid[to.x][to.y]=tile
+	
 	if node.is_in_group('Player'):
 		#numberOfMoves+=1
-		if numberOfMoves>=maximumNumberOfMoves:
-			$player.dead=true
-		
 		yield(self,'enemiesMoved')
+		
+#		if numberOfMoves>=maximumNumberOfMoves and not hasWon:
+#			$player.dead=true
+		
 		var playerIsInDanger=isPlayerInDanger(playerWasInDanger)
 		print('Player was in danger: ', playerWasInDanger)
 		print('Player is in danger now: ', playerIsInDanger)
-		if playerWasInDanger and playerIsInDanger:
+		if (playerWasInDanger and playerIsInDanger) or numberOfMoves>=maximumNumberOfMoves:
 			$player.remove_from_group('Player')
 			gameOver()
 	else:

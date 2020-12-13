@@ -5,11 +5,14 @@ const clickSfx=preload("res://scenes/clickSfx.tscn")
 func _ready():
 	set_process(true)
 	self.rect_global_position.y=-self.rect_size.y
+	global.connect('sPlayerWon',self,'getInvisible')
 	global.connect('sPlayerDead',self,'goIn')
 	$marginContainer/marginContainer/gameOverPanel/marginContainer/vBoxContainer/button.connect("pressed",self,'resetStage')
 func _process(delta):
 	if Input.is_action_just_pressed('ui_reset'):
 		resetStage()
+func getInvisible():
+	self.visible=false
 func goIn():
 	$twn.interpolate_property(self,'rect_global_position:y',self.rect_global_position.y,0,0.66,Tween.TRANS_QUINT,Tween.EASE_OUT)
 	$twn.start()
