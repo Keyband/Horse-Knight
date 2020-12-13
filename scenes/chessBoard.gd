@@ -14,6 +14,9 @@ const aKingMoves = [
 	Vector2(-1,0),
 	Vector2(-1,-1),
 ]
+var numberOfMoves=0
+export(int) var maximumNumberOfMoves=5
+var hasWon=false
 const fDotMaxRadius=4
 var grid=[]
 var fDotRadius=4
@@ -65,7 +68,7 @@ func _ready():
 	# According to the position of our sprite nodes, we can
 	# add then to our grid
 	for node in get_children():
-		if not node is Tween:
+		if not (node is Tween or node is CanvasLayer):
 			var np=self.world_to_map(node.global_position)
 			if node.is_in_group('Player'):
 				grid[np.x][np.y]=Tiles.Player
@@ -105,6 +108,7 @@ func _process(delta):
 	# Check if player won
 	var won = true if findTile(Tiles.King)==Vector2(-1,-1) else false
 	if won:
+		hasWon=true
 		if get_node("king").dead or true:
 			emit_signal('playerWon')
 			set_process(false)
@@ -322,7 +326,7 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 	var tileAtDestination = getTileAt(to)
 	if tileAtDestination!=Tiles.Empty and tileAtDestination!=Tiles.Player:
 		for node in get_children():
-			if (not node is Tween) and not node.is_in_group('Fx'):
+			if (not (node is Tween or node is CanvasLayer)) and not node.is_in_group('Fx'):
 				if to == self.world_to_map(node.global_position):
 					$twnMove.connect("tween_all_completed",self,'killPiece',[node])
 					#killPiece(node)
@@ -330,6 +334,10 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 	grid[at.x][at.y]=Tiles.Empty
 	grid[to.x][to.y]=tile
 	if node.is_in_group('Player'):
+		numberOfMoves+=1
+		if numberOfMoves>=maximumNumberOfMoves:
+			$player.dead=true
+		
 		yield(self,'enemiesMoved')
 		var playerIsInDanger=isPlayerInDanger(playerWasInDanger)
 		print('Player was in danger: ', playerWasInDanger)

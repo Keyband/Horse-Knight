@@ -12,11 +12,11 @@
 [node name="rootDebug" parent="." instance=ExtResource( 1 )]
 nextLevel = ExtResource( 3 )
 
-[node name="king" parent="rootDebug/root2d/tileMap" index="4"]
-position = Vector2( 40, 80 )
+[node name="tileMap" parent="rootDebug/root2d" index="1"]
+maximumNumberOfMoves = 10
 
-[node name="player" parent="rootDebug/root2d/tileMap" index="5"]
-position = Vector2( 120, 80 )
+[node name="king" parent="rootDebug/root2d/tileMap" index="5"]
+position = Vector2( 40, 80 )
 
 [node name="spikes" parent="rootDebug/root2d/tileMap" index="6" instance=ExtResource( 2 )]
 position = Vector2( 60, 40 )
@@ -84,5 +84,8 @@ position = Vector2( 20, 120 )
 
 [node name="bishop" parent="rootDebug/root2d/tileMap" index="25" instance=ExtResource( 5 )]
 position = Vector2( 40, 40 )
+
+[node name="player" parent="rootDebug/root2d/tileMap" index="26"]
+position = Vector2( 120, 80 )
 
 [editable path="rootDebug"]
