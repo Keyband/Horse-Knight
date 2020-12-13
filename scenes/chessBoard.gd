@@ -305,7 +305,7 @@ func tweenWithTaxiMetric(obj=Sprite,endPos=Vector2()):
 		$twn.interpolate_property(obj, 'rotation', obj.rotation, -sign(obj.global_position.x-endPos.x)*PI/8,rotationDuration,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
 		$twn.start()
 		yield($twnMove,"tween_all_completed")
-		$twnMove.interpolate_property(obj,'global_position:y',obj.global_position.y,endPos.y,movementDuration,Tween.TRANS_BACK,Tween.EASE_OUT)
+		$twnMove.interpolate_property(obj,'global_position:y',obj.global_position.y,endPos.y,0.8*movementDuration,Tween.TRANS_QUINT,Tween.EASE_OUT)
 		$twnMove.start()
 		$twn.interpolate_property(obj, 'rotation', obj.rotation, 0,rotationDuration,Tween.TRANS_BACK,Tween.EASE_OUT)
 		$twn.start()
