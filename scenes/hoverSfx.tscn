@@ -4,6 +4,6 @@
 
 [node name="hoverSfx" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
-volume_db = -5.0
+volume_db = -10.0
 autoplay = true
 bus = "sfx"

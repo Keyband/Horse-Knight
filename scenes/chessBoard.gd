@@ -279,7 +279,7 @@ func _draw():
 		for move in moves:
 			if self.world_to_map(get_global_mouse_position()) == (playerPosition+move):
 				if self.world_to_map(lastMouseGlobalPosition) != (playerPosition+move) and\
-				getTileAt(self.world_to_map(lastMouseGlobalPosition))!=Tiles.Spikes:
+				getTileAt(self.world_to_map(get_global_mouse_position()))!=Tiles.Spikes:
 					addHoverSfx()
 			var spriteRect2 = Rect2(Vector2(40,0) if self.world_to_map(get_global_mouse_position()) != (playerPosition+move) else Vector2(20,0),Vector2(20,20))
 			draw_texture_rect_region(tilesTarget,

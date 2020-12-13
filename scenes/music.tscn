@@ -19,6 +19,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed('ui_mute'):
 		AudioServer.set_bus_mute(AudioServer.get_bus_index('music'),!AudioServer.is_bus_mute(AudioServer.get_bus_index('music')))
+	
 "
 
 [node name="music" type="AudioStreamPlayer"]
