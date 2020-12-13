@@ -6,6 +6,7 @@
 [node name="king" type="Sprite" groups=[
 "King",
 ]]
+z_index = 5
 texture = ExtResource( 1 )
 centered = false
 offset = Vector2( 1.5, 1.5 )
