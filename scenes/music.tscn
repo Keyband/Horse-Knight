@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/sounds/music.ogg" type="AudioStream" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends AudioStreamPlayer
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$twn.interpolate_property(self,'volume_db',-80,-10,1,Tween.TRANS_QUINT,Tween.EASE_OUT)
+	$twn.start()
+"
+
+[node name="music" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -10.0
+autoplay = true
+bus = "music"
+script = SubResource( 1 )
+
+[node name="twn" type="Tween" parent="."]
