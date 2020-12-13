@@ -247,7 +247,7 @@ func _draw():
 			var cs=self.cell_size
 			draw_line(cs*Vector2(i,j),cs*Vector2(i,j+1),Color('#544e68'),1.05)
 			draw_line(cs*Vector2(i,j),cs*Vector2(i+1,j),Color('#544e68'),1.05)
-			if getTileAt(Vector2(i,j))!=Tiles.Empty:
+			if getTileAt(Vector2(i,j))!=Tiles.Empty and OS.is_debug_build():
 				drawTileAt(Vector2(i,j))
 	# Draw possible moves
 	if not bGameOver:
@@ -256,10 +256,6 @@ func _draw():
 			draw_texture_rect_region(tilesTarget,
 				Rect2(self.map_to_world(playerPosition+move),20*Vector2.ONE),
 				spriteRect2)
-#			var circleCenterPosition = 0.5*self.cell_size+self.map_to_world(playerPosition+move)
-#			var localRadius = fDotRadius if self.world_to_map(get_global_mouse_position()) != (playerPosition+move) else 1.1*fDotRadius
-#			draw_circle(circleCenterPosition,1.2*localRadius,Color('D0805B'))
-#			draw_circle(circleCenterPosition,localRadius,Color('FFAA5F'))
 
 # A bunch of helper functions:
 func findTile(tile):
