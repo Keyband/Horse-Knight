@@ -10,8 +10,18 @@ font_data = ExtResource( 3 )
 [sub_resource type="GDScript" id=2]
 script/source = "extends Label
 
+var ending='bad'
 func _ready():
-	text = \"After much effort, Horse Knight was finally able to, once and for all, overthrow all monarchy in the world... but what about the people?\"
+	text = \"After much effort, Horse Knight was finally able to overthrow all monarchy in the world... but what about the people, leaderless now?\"
+	if global.stagesLastMove>=15:
+		ending='neutralTactian'
+		text = \"With great skill, Horse Knight was able to masterfully usurp all other monarchs... however, the people quickly got tired of his tyranny.\"
+	if global.stagesPacifist>=15:
+		ending='neutralPacifist'
+		text = \"Without innocent blood being spilled, Horse Knight was swiftly dethroned all kings... however, despite the voice of the people, they still were left without a leader.\"
+	if global.stagesLastMove+global.stagesPacifist>=30:
+		ending='good'
+		text = \"Without unnecessary deaths and with great planning, Horse Knight became the ruler of all land, being loved by the people and making sure to have the kingdom growing...\"
 	self.percent_visible=0
 	$twn.interpolate_property(self,'percent_visible',0,1,5,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	$twn.start()
@@ -27,8 +37,7 @@ script/source = "extends Label
 func _ready():
 	self.percent_visible=0
 	text = \"Thanks for playing!\"
-	if global.
-	
+
 func appear():
 	$twn.interpolate_property(self,'percent_visible',0,1,1,Tween.TRANS_LINEAR,Tween.EASE_IN,1)
 	$twn.start()
@@ -64,6 +73,7 @@ margin_right = 154.832
 margin_bottom = 78.6783
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+text = "Test "
 valign = 1
 autowrap = true
 script = SubResource( 2 )

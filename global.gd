@@ -24,6 +24,6 @@ func objectivesCheck(var moves, var asKilled):
 	if moves == true: stagesLastMove += 1
 	if asKilled == false: stagesPacifist += 1
 	
-	print("Stages Last move: " + str(stagesLastMove))		
-	print("Stages Pacifist: "+ str(stagesPacifist))
+	print_debug("Stages Last move: " + str(stagesLastMove))		
+	print_debug("Stages Pacifist: "+ str(stagesPacifist))
 	
