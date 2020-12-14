@@ -1,8 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/pieces/spikes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://resources/Sprites/Pieces_17x17.png" type="Texture" id=2]
 [ext_resource path="res://resources/Fonts/m5x7.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://resources/Fonts/m3x6.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends Sprite
+
+func _ready():
+	self.modulate.a=0
+	$tween.interpolate_property(self,'modulate:a',0,0.33,6,Tween.TRANS_QUAD,Tween.EASE_IN_OUT,1)
+	$tween.start()
+"
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -10,8 +20,18 @@ font_data = ExtResource( 3 )
 [sub_resource type="GDScript" id=2]
 script/source = "extends Label
 
+var ending='bad'
 func _ready():
-	text = \"After much effort, Horse Knight was finally able to, once and for all, overthrow all monarchy in the world... but what about the people?\"
+	text = \"After much effort, Horse Knight was finally able to overthrow all monarchy in the world... but what about the people, leaderless now?\"
+	if global.stagesLastMove>=15:
+		ending='neutralTactian'
+		text = \"With great skill, Horse Knight was able to masterfully usurp all other monarchs... however, the people quickly got tired of his tyranny.\"
+	if global.stagesPacifist>=15:
+		ending='neutralPacifist'
+		text = \"Without innocent blood being spilled, Horse Knight swiftly dethroned all kings... however, despite the voice of the people, they still were left without a leader.\"
+	if global.stagesLastMove+global.stagesPacifist>=30:
+		ending='good'
+		text = \"Without unnecessary deaths and with great planning, Horse Knight became the ruler of all land, being loved by the people and making sure to lead the kingdom to prosperity...\"
 	self.percent_visible=0
 	$twn.interpolate_property(self,'percent_visible',0,1,5,Tween.TRANS_LINEAR,Tween.EASE_IN)
 	$twn.start()
@@ -25,19 +45,44 @@ font_data = ExtResource( 4 )
 script/source = "extends Label
 
 func _ready():
+	var otherText=get_parent().get_node(\"marginContainer/label\")
+	var ending=otherText.ending
 	self.percent_visible=0
-	text = \"Thanks for playing!\"
-	if global.
-	
+	text = \"Thanks for playing!!!\\n\"
+	if ending=='bad':
+		text+='You got the bad ending. Try to beat the game using every move, and attacking only the king!'
+	elif ending=='neutralTactian':
+		text+='You got a neutral ending. Good job using all moves, but try to attack only the king next time!'
+	elif ending=='neutralPacifist':
+		text+='You got a neutral ending. Good job aiming only for the king, but try to use all your moves next time!'
+	elif ending=='good':
+		text += \"Amazing! You got the absolute best ending. Great job!\"
+	text+='\\nHope you enjoyed this game!'
+	self.text=text
+
 func appear():
-	$twn.interpolate_property(self,'percent_visible',0,1,1,Tween.TRANS_LINEAR,Tween.EASE_IN,1)
+	$twn.interpolate_property(self,'percent_visible',0,1,3,Tween.TRANS_LINEAR,Tween.EASE_IN,1)
 	$twn.start()
 "
 
 [node name="16end" type="Node"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 152.0 ],
+"_edit_vertical_guides_": [ 152.0, 8.0 ]
+}
 
 [node name="spikes" parent="." instance=ExtResource( 1 )]
 scale = Vector2( 8, 8 )
+
+[node name="sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.33 )
+position = Vector2( 26, 134 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 2 )
+hframes = 6
+script = SubResource( 5 )
+
+[node name="tween" type="Tween" parent="sprite"]
 
 [node name="control" type="Control" parent="."]
 anchor_right = 1.0
@@ -49,37 +94,40 @@ __meta__ = {
 [node name="marginContainer" type="MarginContainer" parent="control"]
 margin_right = 160.0
 margin_bottom = 160.0
-custom_constants/margin_right = 70
-custom_constants/margin_top = 10
-custom_constants/margin_left = 10
-custom_constants/margin_bottom = 10
+custom_constants/margin_right = 8
+custom_constants/margin_top = 8
+custom_constants/margin_left = 8
+custom_constants/margin_bottom = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="label" type="Label" parent="control"]
-margin_left = 7.83217
-margin_top = 1.67832
-margin_right = 154.832
-margin_bottom = 78.6783
+[node name="label" type="Label" parent="control/marginContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 152.0
+margin_bottom = 101.0
+size_flags_vertical = 0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
-valign = 1
+text = "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
 autowrap = true
 script = SubResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="twn" type="Tween" parent="control/label"]
+[node name="twn" type="Tween" parent="control/marginContainer/label"]
 
 [node name="label2" type="Label" parent="control"]
-margin_left = 61.939
-margin_top = 89.5202
-margin_right = 151.939
-margin_bottom = 153.52
+margin_left = 8.0
+margin_top = 119.0
+margin_right = 226.0
+margin_bottom = 169.0
+rect_scale = Vector2( 0.66, 0.66 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+text = "Test 2Test 2Test 2Test 2Test 2"
 align = 2
 valign = 1
 autowrap = true
