@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/rootDebug.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/pieces/spikes.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/levels/3.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/pieces/pawn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://resources/Fonts/m3x6.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.0509804, 0.168627, 0.270588, 1 )
+font_data = ExtResource( 5 )
 
 [node name="level" type="Node"]
 
@@ -142,5 +148,19 @@ position = Vector2( 40, 100 )
 
 [node name="pawn" parent="rootDebug/root2d/tileMap" index="46" instance=ExtResource( 4 )]
 position = Vector2( 80, 40 )
+
+[node name="label" type="Label" parent="rootDebug/root2d" index="2"]
+margin_top = 20.0
+margin_right = 242.0
+margin_bottom = 97.0
+rect_scale = Vector2( 0.66, 0.66 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 0.92549, 0.839216, 1 )
+text = "Try to beat the game using all the moves and attacking
+only the king for the best ending!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="rootDebug"]
