@@ -299,7 +299,12 @@ func tweenWithTaxiMetric(obj=Sprite,endPos=Vector2()):
 	randomize()
 	var movementDuration=rand_range(0.55,0.78)
 	var rotationDuration=movementDuration*rand_range(1.1,1.3)
-	if not obj.is_in_group('Bishop'):
+	var queenMovesInX=true
+	if obj.is_in_group('Queen'):
+		if self.world_to_map(obj.global_position).x==self.world_to_map(endPos).x or\
+		self.world_to_map(obj.global_position).y==self.world_to_map(endPos).y:
+			queenMovesInX=false
+	if not (obj.is_in_group('Bishop') or obj.is_in_group('Queen')):
 		altProcessing=false
 		#$twnMove.interpolate_property(obj, 'rotation', obj.rotation, -sign(obj.global_position.x-endPos.x)*PI/8,rotationDuration,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
 		$twnMove.interpolate_property(obj,'global_position:x',obj.global_position.x,endPos.x,movementDuration,Tween.TRANS_BACK,Tween.EASE_IN_OUT)
