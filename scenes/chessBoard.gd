@@ -366,11 +366,12 @@ func moveObjToTile(node=Node2D,to=Vector2()):
 	
 	if node.is_in_group('Player'):
 		#numberOfMoves+=1
-		yield(self,'enemiesMoved')
+		
+		if playerWasInDanger: yield(self,'enemiesMoved')
 		
 #		if numberOfMoves>=maximumNumberOfMoves and not hasWon:
 #			$player.dead=true
-		
+		print_debug(numberOfMoves)
 		var playerIsInDanger=isPlayerInDanger(playerWasInDanger)
 		print('Player was in danger: ', playerWasInDanger)
 		print('Player is in danger now: ', playerIsInDanger)
