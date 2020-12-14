@@ -14,6 +14,7 @@ const aKingMoves = [
 	Vector2(-1,0),
 	Vector2(-1,-1),
 ]
+var anyEnemyDefeated=false
 var numberOfMoves=0
 export(int) var maximumNumberOfMoves=5
 var hasWon=false
@@ -130,6 +131,7 @@ func _process(delta):
 	if won:
 		hasWon=true
 		if get_node("king").dead or true:
+			global.objectivesCheck(numberOfMoves == maximumNumberOfMoves, anyEnemyDefeated)
 			emit_signal('playerWon')
 			set_process(false)
 	# Check if a move is legal
@@ -386,6 +388,8 @@ func killPiece(node):
 	node.offset=Vector2()
 	node.centered=true
 	node.global_position+=self.cell_size/2
+	if !(node.is_in_group('King')): anyEnemyDefeated = true
+	
 func gameOver():
 	bGameOver=true
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
