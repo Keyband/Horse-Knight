@@ -76,16 +76,22 @@ position = Vector2( 40, 0 )
 [node name="tower3" parent="rootDebug/root2d/tileMap" index="22" instance=ExtResource( 6 )]
 position = Vector2( 20, 0 )
 
-[node name="pawn" parent="rootDebug/root2d/tileMap" index="23" instance=ExtResource( 4 )]
+[node name="tower4" parent="rootDebug/root2d/tileMap" index="23" instance=ExtResource( 6 )]
+position = Vector2( 120, 20 )
+
+[node name="pawn" parent="rootDebug/root2d/tileMap" index="24" instance=ExtResource( 4 )]
 position = Vector2( 80, 40 )
 
-[node name="pawn2" parent="rootDebug/root2d/tileMap" index="24" instance=ExtResource( 4 )]
+[node name="pawn2" parent="rootDebug/root2d/tileMap" index="25" instance=ExtResource( 4 )]
 position = Vector2( 20, 120 )
 
-[node name="bishop" parent="rootDebug/root2d/tileMap" index="25" instance=ExtResource( 5 )]
+[node name="bishop" parent="rootDebug/root2d/tileMap" index="26" instance=ExtResource( 5 )]
 position = Vector2( 40, 40 )
 
-[node name="player" parent="rootDebug/root2d/tileMap" index="26"]
+[node name="bishop2" parent="rootDebug/root2d/tileMap" index="27" instance=ExtResource( 5 )]
+position = Vector2( 40, 60 )
+
+[node name="player" parent="rootDebug/root2d/tileMap" index="28"]
 position = Vector2( 120, 80 )
 
 [editable path="rootDebug"]
